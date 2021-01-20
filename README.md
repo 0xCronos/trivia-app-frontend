@@ -1,2 +1,2 @@
-# trivia-frontend
-Frontend Trivia developed in React 
+# trivia-app frontend
+Frontend Trivia developed in React
