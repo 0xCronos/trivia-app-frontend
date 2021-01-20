@@ -1,10 +1,20 @@
 import React from 'react';
-import { RegisterContainer, LinkToLogin } from './RegisterPanelStyle';
+import { 
+	RegisterContainer,
+	RegisterForm,
+	LinkToLogin,
+} from './RegisterPanelStyle';
 
 export const RegisterPanel = () => {
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		alert("Working!");
+	}
+
 	return (
 		<RegisterContainer className="shadow-lg">
-			<div className="content">
+			<RegisterForm onSubmit={handleSubmit}>
 				<span> Registrate ingresando los datos necesarios </span>
 
 				<input
@@ -34,15 +44,14 @@ export const RegisterPanel = () => {
 					placeholder="Re-ingresa tu contraseña"
 				/>
 				<label htmlFor="password">
-					{' '}
-					Vuelve a ingresar tu contraseña{' '}
+					Reingresa tu contraseña
 				</label>
 
 				<button type="submit"> Registrarse </button>
 				<LinkToLogin to="/login">
 					¿Ya tienes una cuenta? Click aquí!
 				</LinkToLogin>
-			</div>
+			</RegisterForm>
 		</RegisterContainer>
 	);
 };

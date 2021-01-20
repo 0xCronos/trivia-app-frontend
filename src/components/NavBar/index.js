@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Nav, NavBrand, CustomNavLink } from './NavBarStyle';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../../context/UserContext';
 
 export const NavBar = () => {
 	const { user, setUser } = useContext(UserContext);
@@ -12,7 +12,24 @@ export const NavBar = () => {
 					Trivia App
 				</NavBrand>
 				<div className="d-flex">
-					{user.id !== undefined ? (
+					{!user.token ? (
+						<>
+							<CustomNavLink
+								exact
+								activeClassName="active"
+								to="/"
+								className="nav-item nav-link"
+							>
+								<img
+									src="./assets/icons/home.svg"
+									width="32px"
+									className="d-block"
+									alt="home"
+								/>
+								<span>Inicio</span>
+							</CustomNavLink>
+						</>
+					) : (
 						<>
 							<CustomNavLink
 								exact
@@ -49,7 +66,7 @@ export const NavBar = () => {
 								activeClassName="active"
 								to="/"
 								className="nav-item nav-link"
-								onClick={() => setUser({})}
+								onClick={setUser}
 							>
 								<img
 									src="./assets/icons/exit.svg"
@@ -58,23 +75,6 @@ export const NavBar = () => {
 									alt="exit"
 								/>
 								<span>Salir</span>
-							</CustomNavLink>
-						</>
-					) : (
-						<>
-							<CustomNavLink
-								exact
-								activeClassName="active"
-								to="/"
-								className="nav-item nav-link"
-							>
-								<img
-									src="./assets/icons/home.svg"
-									width="32px"
-									className="d-block"
-									alt="home"
-								/>
-								<span>Inicio</span>
 							</CustomNavLink>
 						</>
 					)}

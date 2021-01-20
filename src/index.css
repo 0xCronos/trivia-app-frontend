@@ -11,8 +11,13 @@
 	font-family: 'Chakra Petch', sans-serif;
 }
 
-body {
+html, body {
+	height: 100%;
 	background: #f0f0f0;
+}
+
+ul {
+	list-style-type: none;
 }
 
 .page {
@@ -20,6 +25,7 @@ body {
 	/* top: 100px; */
 	left: 0;
 	right: 0;
+	margin-bottom: 50px;
 }
 
 /* == EFECTOS PARA CSSTRANSITION == */
@@ -44,8 +50,5 @@ body {
 	transition: opacity 100ms linear;
 }
 
-ul {
-	list-style-type: none;
-}
 
 /* == FIN EFECTOS PARA CSSTRANSITION == */

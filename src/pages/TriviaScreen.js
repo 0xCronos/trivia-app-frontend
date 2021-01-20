@@ -1,17 +1,20 @@
 import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+
 import { CategoriesPanel } from '../components/CategoriesPanel/';
-import { Trivia } from '../components/Trivia/';
-import { UserContext } from '../components/UserContext';
+import { Trivia } from '../components/Trivia';
+import { Category } from '../components/Category';
+import { UserContext } from '../context/UserContext';
 
 export const TriviaScreen = () => {
 	const [category, setCategory] = useState({});
 	const [selected, setSelected] = useState(false);
+	const [startTrivia, setStartTrivia] = useState(false);
 	const { user } = useContext(UserContext);
 
 	return (
 		<div className="page">
-			{user.id !== undefined ? (
+			{user.token ? (
 				<CategoriesPanel
 					category={category}
 					setCategory={setCategory}
@@ -21,9 +24,21 @@ export const TriviaScreen = () => {
 			) : (
 				<Redirect to="/" />
 			)}
-			{selected === true && category !== undefined ? (
-				<Trivia category={category} />
-			) : null}
+
+
+			{selected === true ?
+				startTrivia === true ? 
+					<Trivia />
+				: 
+				(
+					<Category
+						category={category}
+						setStartTrivia={setStartTrivia}
+					/>
+				)
+			: 
+				null
+			}
 		</div>
 	);
 };

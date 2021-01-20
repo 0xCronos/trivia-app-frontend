@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
-import { Portal } from '../components/Portal/';
-import { UserContext } from '../components/UserContext';
+
+import { Header } from '../components/Header/';
+import { UserContext } from '../context/UserContext';
+
+import { Footer } from '../components/Footer';
 
 export const HomeScreen = () => {
 	const { user } = useContext(UserContext);
 
 	return (
 		<div className="page">
-			{user.id === undefined ? <Portal /> : null}
+			{!user.token ? <Header /> : null}
 			{/* 
             <hr />
 
@@ -16,6 +19,8 @@ export const HomeScreen = () => {
             </pre> */}
 
 			<h1>Home page!</h1>
+			
+			<Footer />
 		</div>
 	);
 };

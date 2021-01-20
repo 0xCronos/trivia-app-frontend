@@ -90,27 +90,30 @@ export const CategoriesPanel = ({
 	const handleClick = (e) => {
 		const catId = e.target.value;
 		const selectedCategory = getCategory(catId);
-
 		setCategory(selectedCategory);
 		setSelected(true);
-
-		console.log(selectedCategory);
 	};
 
-	const listCategories = categories.map((cat) => (
-		<li key={cat._id} className="col mb-4">
+	const listCategories = categories.map((category) => (
+		<li key={category._id} className="col mb-4">
 			<div className="card shadow">
-				<img src={cat.img} className="card-img-top" alt={cat.name} />
+				<img
+					src={category.img}
+					className="card-img-top"
+					alt={category.name}
+				/>
 				<div className="card-body">
-					<h5 className="card-title"> {cat.name}</h5>
+					<h5 className="card-title"> {category.name}</h5>
 					<CategoryDescription className="card-text">
-						{cat.description}
+						{category.description}
 					</CategoryDescription>
 				</div>
 				<hr className="mx-3 my-2" />
-				<CategoryButton value={cat._id} onClick={(e) => handleClick(e)}>
-					{' '}
-					Seleccionar{' '}
+				<CategoryButton
+					value={category._id}
+					onClick={handleClick}
+				>
+					Seleccionar
 				</CategoryButton>
 			</div>
 		</li>

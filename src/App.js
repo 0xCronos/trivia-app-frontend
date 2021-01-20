@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { NavBar } from './components/NavBar';
-import { AppRouter } from './components/AppRouter/';
-import { UserContext } from './components/UserContext';
+import { UserContext } from './context/UserContext';
+import { AppRouter } from './components/AppRouter';
+
+export const App = () => {
+	const [user, setUser] = useState({});
+	
+	return (
+		<UserContext.Provider
+			value={{
+				user,
+				setUser,
+			}}
+			>
+			<AppRouter />
+		</UserContext.Provider>
+	);
+};
 
 // TODO: Finalizar ranking
 // TODO: Añadir al final del ranking la posicion actual del usuario en dicha categoria
@@ -16,21 +29,3 @@ import { UserContext } from './components/UserContext';
 // TODO: Refactorizar estilos para minimizar el codigo
 // TODO: Buscar imagenes para las categorias acorde al estilo
 // TODO: Refactorizar todo para mostrarle los resultados al tio Hola mundo <3
-
-export const App = () => {
-	const [user, setUser] = useState({});
-
-	return (
-		<UserContext.Provider
-			value={{
-				user,
-				setUser,
-			}}
-		>
-			<Router>
-				<NavBar />
-				<AppRouter />
-			</Router>
-		</UserContext.Provider>
-	);
-};

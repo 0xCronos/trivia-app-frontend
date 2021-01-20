@@ -1,15 +1,19 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import { HomeScreen } from '../../pages/HomeScreen';
 import { TriviaScreen } from '../../pages/TriviaScreen';
 import { LoginScreen } from '../../pages/LoginScreen';
 import { RegisterScreen } from '../../pages/RegisterScreen';
 import { NotFoundScreen } from '../../pages/NotFoundScreen';
 
+import { NavBar } from '../NavBar';
+
 export const AppRouter = () => {
 	return (
-		<>
+		<Router>
+			<NavBar />
 			<Route
 				render={({ location }) => (
 					<TransitionGroup>
@@ -20,21 +24,15 @@ export const AppRouter = () => {
 						>
 							<Switch location={location}>
 								<Route exact path="/" component={HomeScreen} />
-								<Route
-									path="/trivia"
-									component={TriviaScreen}
-								/>
+								<Route path="/trivia" component={TriviaScreen} />
 								<Route path="/login" component={LoginScreen} />
-								<Route
-									path="/register"
-									component={RegisterScreen}
-								/>
+								<Route path="/register" component={RegisterScreen} />
 								<Route component={NotFoundScreen} />
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>
 				)}
 			/>
-		</>
+		</Router>
 	);
 };
