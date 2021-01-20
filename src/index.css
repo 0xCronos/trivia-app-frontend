@@ -38,7 +38,7 @@ ul {
 .fade-appear-active,
 .fade-enter.fade-enter-active {
 	opacity: 1;
-	transition: opacity 200ms linear 100ms;
+	transition: opacity 250ms linear 100ms;
 }
 
 .fade-exit {
@@ -49,6 +49,4 @@ ul {
 	opacity: 0;
 	transition: opacity 100ms linear;
 }
-
-
 /* == FIN EFECTOS PARA CSSTRANSITION == */

@@ -1,42 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'
-
-const Circle = styled.div`
-    border: 3px dashed palevioletred;
-    border-radius: 50%;
-    color: orangered;
-    padding: 50px;
-// `
+import React, {useEffect } from 'react';
+import styled from 'styled-components';
 
 const Time = styled.span`
-    position: absolute;
-    top: 58%;
-    bottom : 0;
-    left: 10%;
-    right: 10%;
-    text-align: center;
-    font-size: 18px;
+    background-color: #f6f6f6;
+    color: orangered;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 25px;
+    border-radius: 50%;
+    border: 3px dashed palevioletred;
 `
 
-export const Timer = () => {
-
-    const [counter, setCounter] = useState(0);
-    // set start to true to run the timer
-    const [start, setStart] = useState(false);
+export const Timer = ({counter, setCounter}) => {
 
 	useEffect(() => {
-        if(!start){
-            setTimeout(() => {
-                setCounter(counter + 1);
-            }, 1000);
-        }
+        setTimeout(() => {
+            setCounter(counter + 1);
+        }, 1000);
 	});
 
 	return (
-        <div className="d-flex justify-content-center mt-5">
-            <Circle>
-                <Time>{counter.toString()} s</Time>
-            </Circle>
+        <div className="container pb-5">
+            <Time>{counter}s</Time>
         </div>
 	);
 };

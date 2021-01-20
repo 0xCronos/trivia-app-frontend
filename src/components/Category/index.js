@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
+
 import { Ranking } from '../Ranking/';
 
 const CategoryContainer = styled.div`
 	background-color: white;
 	padding: 20px;
 	margin: 0 30vw 0 30vw;
+	border-radius: 3px;
 
 	@media (max-width: 1200px) {
 		margin: 0 15% 0 15%;
@@ -40,33 +43,33 @@ const LinkToTrivia = styled(Link)`
 `;
 
 export const Category = ({ category, setStartTrivia }) => {
-
 	const handleClick = () => {
 		setStartTrivia(true);
-		console.log('working!');
 	};
 
 	return (
-		<CategoryContainer className="content shadow-lg my-5">
-			<LinkToTrivia to="/trivia" className="mx-2">
-				Volver
-			</LinkToTrivia>
-			<h1>Trivia de {category.name.toLowerCase()}</h1>
-			<img
-				src={category.img}
-				className="img-fluid rounded"
-				alt={category.name}
-			/>
-			<div className="pt-2">
-				<h3>Acerca de la trivia</h3>
-				<p>{category.description}</p>
-			</div>
-			<hr />
-			<Ranking />
+		<CSSTransition in={true} appear={true} timeout={300} classNames="fade">
+			<CategoryContainer className="content shadow-lg my-5">
+				<LinkToTrivia to="/trivia" className="mx-2">
+					Volver
+				</LinkToTrivia>
+				<h1>Trivia de {category.name.toLowerCase()}</h1>
+				<img
+					src={category.img}
+					className="img-fluid rounded"
+					alt={category.name}
+				/>
+				<div className="pt-2">
+					<h3>Acerca de la trivia</h3>
+					<p>{category.description}</p>
+				</div>
+				<hr />
+				<Ranking />
 
-			<CategoryButton value={category._id} onClick={handleClick}>
-				Comenzar
-			</CategoryButton>
-		</CategoryContainer>
+				<CategoryButton value={category._id} onClick={handleClick}>
+					Comenzar
+				</CategoryButton>
+			</CategoryContainer>
+		</CSSTransition>
 	);
 };

@@ -20,7 +20,7 @@ export const App = () => {
 // TODO: Finalizar ranking
 // TODO: Añadir al final del ranking la posicion actual del usuario en dicha categoria
 // TODO: Crear sistema de quizz
-// TODO: Crear Timer
+// TODO: Mejorar responsive del Timer
 // TODO: Mejorar y completar Trivia
 // TODO: Crear footer
 // TODO: Crear landingpage
@@ -28,4 +28,6 @@ export const App = () => {
 // TODO: Solo si hay tiempo => Crear Recuperar contraseña
 // TODO: Refactorizar estilos para minimizar el codigo
 // TODO: Buscar imagenes para las categorias acorde al estilo
+// TODO: proptypes
+// TODO: validar formularios
 // TODO: Refactorizar todo para mostrarle los resultados al tio Hola mundo <3

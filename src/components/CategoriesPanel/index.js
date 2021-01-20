@@ -1,5 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import { CSSTransition } from 'react-transition-group';
+
+import {
+	ListItem,
+	CategoryDescription,
+	CategoryButton,
+} from './CategoriesPanelStyle';
 
 const categories = [
 	{
@@ -58,31 +64,13 @@ const categories = [
 	},
 ];
 
-const CategoryButton = styled.button`
-	background-color: transparent;
-	margin-bottom: 10px;
-	border: none;
-
-	&:hover {
-		color: #5b3c8a;
-		font-weight: 600;
-	}
-`;
-
-const CategoryDescription = styled.p`
-	display: block;
-	width: auto;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-`;
-
 export const CategoriesPanel = ({
 	category,
 	setCategory,
 	selected,
 	setSelected,
 }) => {
+
 	const getCategory = (id) => {
 		return categories.find((cat) => cat._id === id);
 	};
@@ -94,30 +82,39 @@ export const CategoriesPanel = ({
 		setSelected(true);
 	};
 
+	let delay = 100;
 	const listCategories = categories.map((category) => (
-		<li key={category._id} className="col mb-4">
-			<div className="card shadow">
-				<img
-					src={category.img}
-					className="card-img-top"
-					alt={category.name}
-				/>
-				<div className="card-body">
-					<h5 className="card-title"> {category.name}</h5>
-					<CategoryDescription className="card-text">
-						{category.description}
-					</CategoryDescription>
-				</div>
-				<hr className="mx-3 my-2" />
-				<CategoryButton
-					value={category._id}
-					onClick={handleClick}
-				>
-					Seleccionar
-				</CategoryButton>
-			</div>
-		</li>
-	));
+			<CSSTransition
+				in={true}
+				appear={true}
+				timeout={200}
+				classNames="fade"
+				key={category._id}
+			>
+				<ListItem className="col mb-4" delay={delay += 45}>
+					<div className="card shadow">
+						<img
+							src={category.img}
+							className="card-img-top"
+							alt={category.name}
+						/>
+						<div className="card-body">
+							<h5 className="card-title"> {category.name}</h5>
+							<CategoryDescription className="card-text">
+								{category.description}
+							</CategoryDescription>
+						</div>
+						<hr className="mx-3 my-2" />
+						<CategoryButton
+							value={category._id}
+							onClick={handleClick}
+						>
+							Seleccionar
+						</CategoryButton>
+					</div>
+				</ListItem>
+			</CSSTransition>
+		));
 
 	return (
 		<>
